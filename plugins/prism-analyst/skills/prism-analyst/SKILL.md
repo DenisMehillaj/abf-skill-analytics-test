@@ -51,7 +51,7 @@ If ANY dimension is ambiguous, ask a concise clarifying question. Do NOT guess.
 
 ### Step 1 - Load Deal Context (MANDATORY)
 
-These are the Prism MCP tools, served by the MCP server registered as `prism-mcp`. Call them by name:
+These are the tools provided by the Prism MCP server. Call them by name:
 
 1. `list_deals()` - resolve deal name to transaction_id. Results are paginated (default `limit=50`); if the deal isn't in the first page, page through with `offset` before asking the user to disambiguate.
 2. `get_deal_skill(transaction_id=<id>)` - load operator playbook
