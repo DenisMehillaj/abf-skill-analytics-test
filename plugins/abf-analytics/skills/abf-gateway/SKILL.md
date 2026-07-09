@@ -96,6 +96,7 @@ On-demand references; the gateway does not preload them.
 - `knowledge/reference/common-pitfalls.md` — defensive patterns.
 - `knowledge/reference/derived-metrics.md` — SMM/CPR/MoM/concentration-drift formulas.
 - `knowledge/reference/visuals-playbook.md` — chart-type defaults per analysis pattern.
+- `knowledge/reference/artifact-style.md` — colors, typography, and page layout for any rendered artifact (HTML dashboard, exported document, image). Consult whenever producing one.
 
 ## Never
 
