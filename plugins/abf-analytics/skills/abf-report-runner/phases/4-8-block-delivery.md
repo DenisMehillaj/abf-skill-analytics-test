@@ -17,11 +17,11 @@ Small summary tables (≤5 rows × 5 columns) are allowed when essential to the 
 |---|---|---|
 | 1 | `portfolio-overview` | Inline below |
 | 2 | `credit-performance` | Inline below |
-| 3 | `loss-vintage` | `../../abf-asset-class-context/knowledge/_analyses/loss-vintage.md` |
-| 4 | `prepayment` | `../../abf-asset-class-context/knowledge/_analyses/prepayment.md` |
-| 5 | `concentration` | `../../abf-asset-class-context/knowledge/_analyses/concentration.md` |
+| 3 | `loss-vintage` | `catalog.on_demand.loss_vintage` via `read_resource` |
+| 4 | `prepayment` | `catalog.on_demand.prepayment` via `read_resource` |
+| 5 | `concentration` | `catalog.on_demand.concentration` via `read_resource` |
 
-**Why Blocks 1–2 are inline and Blocks 3–5 are knowledge files.** Blocks 3–5 have asset-class applicability gates (`loss-vintage` requires `cf_determinism: YES`; `prepayment` requires `loan_sim_fit: YES|PARTIAL`; `concentration` bifurcates consumer vs. non-consumer). Each methodology lives alongside the asset-class catalog in `abf-asset-class-context/knowledge/_analyses/` — same authority that determines applicability. Blocks 1–2 use universal portfolio shape (balance, count, WA metrics, DQ stratification) with no asset-class gate, so the spec stays inline.
+**Why Blocks 1–2 are inline and Blocks 3–5 are served sections.** Blocks 3–5 have asset-class applicability gates (`loss-vintage` requires `cf_determinism: YES`; `prepayment` requires `loan_sim_fit: YES|PARTIAL`; `concentration` bifurcates consumer vs. non-consumer). Each methodology is served by the ABF MCP server alongside the asset-class index — the same authority that determines applicability — and the index pre-computes the gates: a gated-off block's `on_demand` key arrives as `null`. Blocks 1–2 use universal portfolio shape (balance, count, WA metrics, DQ stratification) with no asset-class gate, so the spec stays inline.
 
 ## Block 1 — Executive Summary & Portfolio Overview
 
@@ -49,13 +49,13 @@ Deliver one report block to the analyst.
 
 ## Entry conditions
 
-The block's domain is in scope. For blocks 3-5, the source methodology file has been read once during this run (do not re-read if already loaded this conversation).
+The block's domain is in scope. For blocks 3-5, the block's methodology section has been read once during this run (do not re-read if already loaded this conversation).
 
 ## Actions
 
 For the current block:
 
-1. **Load the block's source.** Blocks 1–2 follow the inline specs above. Blocks 3-5 read the methodology file named in the block table (Read tool, once per run; reuse the in-memory copy after).
+1. **Load the block's source.** Blocks 1–2 follow the inline specs above. Blocks 3-5 read the methodology section named in the block table (`read_resource` on the catalog's `on_demand` key, once per run; reuse the in-memory copy after).
 2. **Retrieve.** Call `get_stratification_analytics_data` for the analytics the block needs.
 3. **Narrate.** Author the block's analytical narrative per the source's `## Analyze` and `## Format` sections.
 4. **Visual** (when visuals are on). Produce the block's default visual per `../../abf-gateway/knowledge/reference/visuals-playbook.md`.
@@ -70,7 +70,7 @@ The block narrative + source links have been delivered to the analyst and the ch
 ## Failure modes
 
 - **`get_stratification_analytics_data` fails.** Surface the error to the analyst; do NOT silently skip the block. Ask for direction.
-- **Source methodology hits its applicability gate.** A block's methodology file may refuse to run when its asset-class precondition fails (e.g., `loss-vintage.md` when `cf_determinism: NO`). Phase Discover's profile-flag suppression should prevent this case, but if it slips through: skip the block, surface a one-line note to the analyst ("Skipping [Section Title] — [catalog reason]"), and continue to the next block. Do NOT prompt the analyst for direction; the catalog answer is final.
+- **Block's `on_demand` key is `null`.** The index pre-computes applicability gates — a `null` key means the methodology does not apply to this asset class (e.g., loss-vintage when `cf_determinism: NO`). Phase Discover's profile-flag suppression should prevent this case, but if it slips through: skip the block, surface a one-line note to the analyst ("Skipping [Section Title] — [catalog reason]"), and continue to the next block. Do NOT prompt the analyst for direction; the catalog answer is final.
 - **Analyst chose "stop" mid-delivery.** Route to Handoff.
 
 ## What the runner must NOT do in this phase
@@ -80,5 +80,5 @@ The block narrative + source links have been delivered to the analyst and the ch
 
 ## Cross-references
 
-- Source methodology files per the block table above
+- Methodology sections per the block table above (`catalog.on_demand` keys via `read_resource`)
 - `../../abf-gateway/knowledge/reference/visuals-playbook.md` — default visual per block

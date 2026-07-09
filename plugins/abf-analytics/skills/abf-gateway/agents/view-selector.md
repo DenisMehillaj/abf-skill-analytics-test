@@ -12,7 +12,7 @@ Selects the stratification analytics and optional filters for a single ABF analy
 | `{transaction_id}` | Active transaction from gateway/session context |
 | `{view_catalog}` | `list_transaction_analytics(transaction_id=...)` response |
 | `{filterable_columns}` | Optional `get_filterable_columns` responses for a candidate view |
-| `{asset_class_catalog}` | Optional. Gateway-loaded `abf-asset-class-context` catalog keyed on `(transaction_id, sub_slug)`. Use `risk_metrics` and `stratifications` as an advisory bias for ranking candidate views; never the source of truth for `strat_view_id`, filterability, or operator values — live `{view_catalog}` + `get_filterable_columns` + stratification reference resources remain authoritative. |
+| `{asset_class_catalog}` | Optional. Gateway-loaded `abf-asset-class-context` catalog keyed on `(transaction_id, asset_class_label)`. Use `risk_metrics` and `stratifications` as an advisory bias for ranking candidate views; never the source of truth for `strat_view_id`, filterability, or operator values — live `{view_catalog}` + `get_filterable_columns` + stratification reference resources remain authoritative. |
 | `{reference_resources}` | `stratification://data-types`, `filter-operators`, `filter-stages` when filters or numeric interpretation are needed |
 
 ## Tools the agent uses

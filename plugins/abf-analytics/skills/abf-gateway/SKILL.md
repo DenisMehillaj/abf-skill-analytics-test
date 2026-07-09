@@ -33,7 +33,7 @@ Follow `knowledge/contracts/response-discipline.md` for every user-facing reply.
 
 Find the ABF server by looking for ABF-specific MCP tools — `list_transactions`, `list_transaction_analytics`, `get_stratification_analytics_data` — among the available tools. If none are present, say so and stop.
 
-If multiple ABF MCP servers are connected (e.g., both UAT and Staging) and the user has not identified which environment to query, **ask before any tool call** — including read-only analytical queries. Once confirmed, use only that server's tools for the rest of the session.
+If multiple ABF MCP servers are connected (e.g., both UAT and Staging) and the user has not identified which environment to query, **ask before any tool call** — including read-only analytical queries. Once confirmed, use only that server's tools for the rest of the session — including `read_resource` for knowledge and reference resources; never mix one environment's catalog with another environment's data.
 
 ## Step 2: Classify scope, then resolve asset class only when needed
 
@@ -52,8 +52,8 @@ Classify the question scope — verb/noun based, needs no catalog:
 **Broad — build the catalog first.** When an active `transaction_id` is known:
 
 1. Call `list_transactions()` and find the entry whose `id` matches `transaction_id` (no ID filter — scan the list; use `list_transactions(name=<name>)` if named). Extract `asset_class`. **Pagination:** default `limit` is 20; pass an explicit `limit` (e.g. `limit=200`) or page with `offset` for large tenants.
-2. Follow the `abf-asset-class-context` skill (Steps 1–5) to build `{asset_class_catalog}` in memory.
-3. Reuse the catalog for `(transaction_id, sub_slug)` if already loaded this session — never reload the same key.
+2. Follow the `abf-asset-class-context` skill protocol (index → resolve one class → parallel section batch) to build `{asset_class_catalog}` in memory.
+3. Reuse the catalog for `(transaction_id, asset_class_label)` if already loaded this session — never reload the same key.
 4. Route to `abf-report-runner`.
 
 If no transaction is active and no asset class is named, resolve it once a transaction is identified.

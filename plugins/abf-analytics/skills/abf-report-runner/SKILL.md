@@ -4,16 +4,16 @@ description: >
   Use when running a comprehensive (broad-scope, multi-block) ABF transaction report.
   Triggered by abf-gateway ONLY when broad analytical intent is classified. Single-metric /
   narrow reads are answered inline by abf-gateway and do NOT enter this runner.
-  Reads asset-class methodology files (`abf-asset-class-context/knowledge/_analyses/loss-vintage.md`,
-  `prepayment.md`, `concentration.md`) per catalog applicability gates.
+  Reads asset-class methodology sections from the ABF MCP server (via the `on_demand` keys
+  carried in the asset-class catalog) per catalog applicability gates.
   Block 1–2 specs and synthesis guidelines are inlined in phases/.
 ---
 
 # ABF Report Runner
 
-Client-side phase guide for **broad, multi-block** ABF analytical reports (narrow single-metric reads are answered inline by `abf-gateway` and never reach this runner). The `{asset_class_catalog}` drives domain grouping and determines which methodologies are applicable (the Discover phase). Block 1–2 specs are inlined in `phases/4-8-block-delivery.md`; Block 3–5 read asset-class methodology files from `abf-asset-class-context/knowledge/_analyses/`. This runner is **read-only**: it reads, queries, and explains analytics data within the conversation — it holds no on-disk state.
+Client-side phase guide for **broad, multi-block** ABF analytical reports (narrow single-metric reads are answered inline by `abf-gateway` and never reach this runner). The `{asset_class_catalog}` drives domain grouping and determines which methodologies are applicable (the Discover phase). Block 1–2 specs are inlined in `phases/4-8-block-delivery.md`; Blocks 3–5 read methodology sections from the ABF MCP server via the catalog's `on_demand` keys. This runner is **read-only**: it reads, queries, and explains analytics data within the conversation — it holds no on-disk state.
 
-Each phase is documented in its own file under `phases/`. The runner is the dispatcher. Per-block methodology lives in `abf-asset-class-context/knowledge/_analyses/`.
+Each phase is documented in its own file under `phases/`. The runner is the dispatcher. Per-block methodology is served by the ABF MCP server; the `{asset_class_catalog}`'s `on_demand` map names each block's section.
 
 ## Phase index
 

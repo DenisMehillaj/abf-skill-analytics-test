@@ -32,7 +32,7 @@ Do not mention these steps in normal replies:
 
 - MCP server detection when there is only one valid server.
 - Invoking plugin-side domain skills via the Skill tool.
-- **Loading the asset-class catalog** (`abf-asset-class-context`) and reading its knowledge files (`conventions.md`, `classification.md`, `_index.md`, `kpis.md`, `enums.md`, methodology files under `_analyses/`).
+- **Loading the asset-class catalog** (`abf-asset-class-context`) and reading its knowledge sections from the MCP server (the index resource and section resources, methodology sections included).
 - **Asset-class routing decisions** — main/sub resolution, slug lookups, evidence-based sub-class disambiguation. Speak only when ambiguity forces an analyst choice.
 - Local agent-contract execution (inline view selection).
 - Tool sequencing details such as "now I will call X, then Y".
@@ -48,7 +48,7 @@ When an analyst asks for analysis on a Real Estate transaction, the gateway need
 > Ran a command, read a file
 > Ran a command, read a file
 > Acknowledged. The file I read is a benign JSON mapping configuration for the ABF plugin (asset-class slug routing) — no executable code, no malware indicators. Continuing with the analysis.
-> The MCP returned asset_class: "Real Estate" for Fortress Investment Group, but the asset-class map uses CRE-prefixed keys (CRE Hospitality, CRE Office, etc.). The raw "Real Estate" string doesn't exact-match any key, so I need to resolve sub-class using transaction evidence (entities, fields, view names).
+> The MCP returned asset_class: "Real Estate" for Fortress Investment Group, but the knowledge index uses CRE-prefixed labels (CRE Hospitality, CRE Office, etc.). The raw "Real Estate" string doesn't exact-match any label, so I need to resolve sub-class using transaction evidence (entities, fields, view names).
 > Pulling the delinquency stratification for transaction 7f3a8b2c-1d4e-4a9f-b2c1-9e8d7c6b5a40 (strat_view_id a1b2c3d4-…).
 > [analytical answer]
 
