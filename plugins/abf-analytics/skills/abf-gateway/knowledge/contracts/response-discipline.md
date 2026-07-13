@@ -82,13 +82,23 @@ In user-facing text, refer to saved Dynamic Views and saved Stratification Views
 
 ## Analytical answer shape
 
-For single-query analytical answers:
+**Required output template — an analytical answer that used MCP data is INCOMPLETE until it matches this shape:**
+
+```text
+<result — the finding, direct, ≤3 sentences>
+<optional chart or ≤5×5 table>
+Source — [<analytics display name>](<url>)      ← one line per analytics used
+```
+
+The `Source —` line is part of what makes the answer complete, not a trailing courtesy or a step you reach only after "thinking it through". Emit it in the SAME turn as the finding — an answer that drew on stratification data but ends without its Source line is malformed, **with reasoning/thinking mode on OR off**. Never stop before it; never wait to be asked for it.
+
+The numbered points below are the *how*; the template above is the *what you must produce*.
 
 1. **Direct answer first.** The opening sentence states the result. No preamble, no plan, no recap of the question.
 2. **≤3 sentences by default.** Add a chart or short table if it helps interpretation, but body prose stays tight. The analyst expands the ask if they want depth.
 3. Key evidence from the selected analytics (one line, ideally a single figure or comparison).
 4. Caveats only if they change interpretation — skip filler caveats.
-5. **Source link — MANDATORY.** End with a source link for **each** `get_stratification_analytics_data` retrieval the answer drew on. The `url` is a **top-level field** of the tool response (a sibling of `csv`, `dataset`, `columns`) — not inside the CSV text; read it from there. Render each as a **markdown link with the analytics display name as the visible text**, on the last line(s): `Source — [<analytics display name>](<url>)`. "Verbatim" applies to the href only — copy the returned `url` exactly (do not paraphrase, truncate, rebuild, or drop query params); the visible text is the display name, never the raw UUID. This is binding, not "when available" — if a retrieval backed the answer, its source link MUST appear; an answer spanning multiple views (cross-transaction, or current-vs-prior) lists every source, not just one. The line is omitted only when no analytics retrieval backed the answer at all. If a retrieval backed the answer but its response carried no `url`, say so on that line rather than dropping the citation silently.
+5. **Source link — MANDATORY, one per analytics used.** End with a source link for **each** `get_stratification_analytics_data` retrieval the answer drew on. The `url` is a **top-level field** of the tool response (a sibling of `csv`, `dataset`, `columns`) — not inside the CSV text; read it from there. Render each as a **markdown link with the analytics display name as the visible text**, on the last line(s): `Source — [<analytics display name>](<url>)`. "Verbatim" applies to the href only — copy the returned `url` exactly (do not paraphrase, truncate, rebuild, or drop query params); the visible text is the display name, never the raw UUID. This is binding, not "when available" — if a retrieval backed the answer, its source link MUST appear; an answer spanning multiple views (cross-transaction, or current-vs-prior) lists every source, not just one. The line is omitted only when no analytics retrieval backed the answer at all. If a retrieval backed the answer but its response carried no `url`, say so on that line rather than dropping the citation silently.
 
 Do not explain how the analytics was selected unless the analyst asks or selection was ambiguous.
 
