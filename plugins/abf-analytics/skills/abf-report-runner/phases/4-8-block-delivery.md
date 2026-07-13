@@ -7,7 +7,7 @@ The runner walks blocks 1–5 in order, skipping any whose domain the analyst pu
 Do NOT reproduce full data tables. For every data point:
 - Summarize 3-5 most significant figures inline
 - Highlight outliers and inflection points
-- **Append the source link — MANDATORY.** Every block that fetches data ends with the source `url` from each `get_stratification_analytics_data` response it drew on, so the analyst can open the full dataset on the platform. The `url` is embedded in every response; never deliver a block's figures without its source link.
+- **Append the source link — MANDATORY.** Every block that fetches data ends with a source link for each `get_stratification_analytics_data` response it drew on, so the analyst can open the full dataset on the platform. Render each as a markdown link with the analytics display name as visible text and the response's top-level `url` field as the href: `Source — [<name>](<url>)`. The `url` is a sibling field of `csv` in every response (not inside the CSV text); copy the href exactly. The embedded UUIDs are fine — this is the sanctioned carve-out to the no-UUID-in-prose rule (see `../../abf-gateway/knowledge/contracts/response-discipline.md`). Never deliver a block's figures without its source link.
 
 Small summary tables (≤5 rows × 5 columns) are allowed when essential to the narrative. Larger tables → link to the platform instead.
 
@@ -59,7 +59,7 @@ For the current block:
 2. **Retrieve.** Call `get_stratification_analytics_data` for the analytics the block needs, with an explicit conservative `limit` (start ~50-100 rows — the block only summarizes a handful of figures; see `../../abf-gateway/knowledge/reference/common-pitfalls.md` on oversized results).
 3. **Narrate.** Author the block's analytical narrative per the source's `## Analyze` and `## Format` sections. For Blocks 3-4 (loss-vintage, prepayment) and any other multi-dimension response, follow `../../abf-gateway/knowledge/contracts/reading-stratification-tables.md` first — these are exactly the cohort/MOB × date tables where cell-vs-cohort and cumulative-vs-periodic misreads happen.
 4. **Visual** (when visuals are on). Produce the block's default visual per `../../abf-gateway/knowledge/reference/visuals-playbook.md`.
-5. **Deliver to the analyst.** Send the narrative + visual + the source `url` for each analytics fetched in this block (mandatory — see Context window management above).
+5. **Deliver to the analyst.** Send the narrative + visual + a source link (`Source — [<name>](<url>)`) for each analytics fetched in this block (mandatory — see Context window management above).
 6. **Checkpoint prompt.** "Next up: [Section Title]. Continue, skip, or jump to Key Findings?" — section titles follow the sequence: Portfolio Overview → Credit Performance → Loss Vintage Analysis → Prepayment Vintage Analysis → Geographic & FICO Concentration → Key Findings & Risk Assessment.
 7. **Handle the analyst's reply.** Continue → next block. Skip section → note the skip, proceed to the block after. Jump to findings → Synthesize. Stop → Handoff.
 

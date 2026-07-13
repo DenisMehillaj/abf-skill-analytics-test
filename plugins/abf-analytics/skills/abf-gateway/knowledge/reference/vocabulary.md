@@ -1,6 +1,6 @@
 # ABF Vocabulary
 
-Business terms used in ABF analyst conversations and on the server-side skill definitions. Use these in user-facing text; refer to every object by its display name and keep internal platform UUIDs (transaction / analytics / column IDs) out of prose entirely — link with the frontend `url`, not the raw ID. Business-data identifiers from the dataset (Borrower ID, ISIN, Facility ID) are legitimate analytical content and exempt.
+Business terms used in ABF analyst conversations and on the server-side skill definitions. Use these in user-facing text; refer to every object by its display name and keep internal platform UUIDs (transaction / analytics / column IDs) out of prose as bare text — link with the frontend `url`, not the raw ID. The one carve-out: the frontend `url` itself may contain those UUIDs in its query string; surface it as a markdown link with the display name as visible text (`[<name>](<url>)`), which keeps bare UUIDs out of prose while still linking. Business-data identifiers from the dataset (Borrower ID, ISIN, Facility ID) are legitimate analytical content and exempt.
 
 ## Core entities
 

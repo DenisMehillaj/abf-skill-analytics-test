@@ -51,7 +51,7 @@ Classify the question scope — verb/noun based, needs no catalog:
 
 1. Run the required chain directly: `list_transaction_analytics` → `get_filterable_columns` (call this whenever a filter / bucket / status / category is implied — it returns the allowed labels; never guess them) → `get_stratification_analytics_data` with an explicit, conservative `limit` (start ~50-100 rows, not the 2000 default/max — see `knowledge/reference/common-pitfalls.md`). Trust the CSV glossary over column names.
 2. Use the active `transaction_id` from session context. Call `list_transactions` only when the transaction must still be identified, or for cross-transaction work.
-3. Deliver the answer, ending with the analytics name and source `url` for each retrieval it drew on.
+3. Deliver the answer, ending with a source link for each retrieval it drew on — a markdown link with the analytics display name as visible text and the response's top-level `url` field as the href: `Source — [<name>](<url>)`. This is mandatory; the `url` is a sibling field of `csv` in the response, not inside the CSV text. See `knowledge/contracts/response-discipline.md` §Analytical answer shape.
 
 **Broad — build the catalog first.** When an active `transaction_id` is known:
 
