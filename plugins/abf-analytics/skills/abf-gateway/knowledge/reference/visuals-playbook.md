@@ -2,7 +2,7 @@
 
 Reference for choosing what interactive chart, table, diagram, or timeline to produce. Consult when producing a visual and the current MCP client supports inline artifacts. Text-only clients fall back to compact markdown tables — keep the analytical structure the same.
 
-This file picks the chart type. For colors, fonts, and page/card layout, see `artifact-style.md`.
+This file picks the chart type. **For colours, fonts, and page/card layout, loading and applying `artifact-style.md` before you render is MANDATORY** — every rendered artifact uses its palette, typography, and `:root` CSS variables, never a free-styled or default palette. This holds regardless of modality (inline chart, dashboard, or exported document), the same way the source link does (step 4 below).
 
 ## When to produce a visual
 
@@ -44,7 +44,7 @@ If the user confirmed visuals are on and the analysis is visualization-friendly 
 
 ## How to structure the visual content
 
-For each visual, emit:
+Apply the house style from `artifact-style.md` (palette, typography, `:root` CSS variables) to whatever you render — **mandatory for every artifact, loaded before rendering; never a free-styled or default palette.** Then, for each visual, emit:
 1. The textual analysis first (headline + key figures).
 2. The visual-trigger sentence ("Let me chart this — [chart description].").
 3. The raw data (table or structured list) so the renderer has material.

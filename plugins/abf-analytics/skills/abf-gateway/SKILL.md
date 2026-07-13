@@ -64,7 +64,7 @@ If no transaction is active and no asset class is named, resolve it once a trans
 
 ## Step 3: Visuals
 
-Deliver visuals opportunistically by default — text and markdown tables for simple answers, and a chart, heatmap, or interactive table when the data is clearly visualization-friendly (`knowledge/reference/visuals-playbook.md`). If the analyst says "turn visuals off", "no charts", or "always chart this", honor it for the rest of the session. **A visual never drops the source link** — the `Source — [<name>](<url>)` citation is modality-independent and rides in the same message as any chart or artifact (see `knowledge/reference/visuals-playbook.md` step 4). Delivering a chart instead of text is the most common place the citation is lost; it is not an exception.
+Deliver visuals opportunistically by default — text and markdown tables for simple answers, and a chart, heatmap, or interactive table when the data is clearly visualization-friendly (`knowledge/reference/visuals-playbook.md`). If the analyst says "turn visuals off", "no charts", or "always chart this", honor it for the rest of the session. **A visual never drops the source link** — the `Source — [<name>](<url>)` citation is modality-independent and rides in the same message as any chart or artifact (see `knowledge/reference/visuals-playbook.md` step 4). Delivering a chart instead of text is the most common place the citation is lost; it is not an exception. **A visual also never drops the house style** — every rendered artifact (dashboard, exported document, chart image) MUST apply `knowledge/reference/artifact-style.md` (palette, typography, CSS variables), loaded *before* you render and never free-styled. `visuals-playbook.md` picks the chart *type*; `artifact-style.md` governs its colours and layout. Like the citation, this is modality-independent (thinking mode on or off) and is the second thing most often dropped when the deliverable is a visual.
 
 ## Step 4: Follow chain references
 
@@ -96,7 +96,7 @@ On-demand references; the gateway does not preload them.
 - `knowledge/reference/common-pitfalls.md` — defensive patterns.
 - `knowledge/reference/derived-metrics.md` — SMM/CPR/MoM/concentration-drift formulas.
 - `knowledge/reference/visuals-playbook.md` — chart-type defaults per analysis pattern.
-- `knowledge/reference/artifact-style.md` — colors, typography, and page layout for any rendered artifact (HTML dashboard, exported document, image). Consult whenever producing one.
+- `knowledge/reference/artifact-style.md` — colors, typography, and page layout for any rendered artifact (HTML dashboard, exported document, image). **MANDATORY: load and apply on every rendered artifact, before rendering — never free-style the palette (see Step 3).**
 
 ## Never
 
