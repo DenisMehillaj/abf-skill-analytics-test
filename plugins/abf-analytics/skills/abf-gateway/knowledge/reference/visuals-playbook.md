@@ -48,6 +48,7 @@ For each visual, emit:
 1. The textual analysis first (headline + key figures).
 2. The visual-trigger sentence ("Let me chart this — [chart description].").
 3. The raw data (table or structured list) so the renderer has material.
+4. **The source link — MANDATORY, identical to a text answer.** A visual is a *delivery of analytics data*, so it carries the same citation duty: end the message with `Source — [<analytics display name>](<url>)` for each `get_stratification_analytics_data` response the visual draws on (the `url` is the response's top-level field, a sibling of `csv`). **Delivering a chart is not an exception to the source-link rule — the rule is modality-independent** (text, markdown table, inline chart, or rendered artifact all require it). This is the single most common place the citation gets dropped: the recipe ends at step 3, there is no text tail to append to, and the `Source —` line is forgotten. **Do not let the recipe end at step 3 — a chart with no accompanying source link is an incomplete answer.**
 
 Example, for a DQ trend response:
 
@@ -61,8 +62,10 @@ Example, for a DQ trend response:
 > | 2025-03 | 0.8% | 0.4% | 0.2% |
 > | 2025-04 | 0.9% | 0.5% | 0.2% |
 > | ... | ... | ... | ... |
+>
+> Source — [Delinquency Ratio - Vintage](https://abf.lmi.cardoaiapps.com/transactions/dynamic-views?id=…&subviewId=…&viewId=…)
 
-The client's renderer picks up the prompt + table and produces the interactive line chart.
+The client's renderer picks up the prompt + table and produces the interactive line chart; the source link rides along in the same message.
 
 ## Visual type defaults per ABF analysis
 

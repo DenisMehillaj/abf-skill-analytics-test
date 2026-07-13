@@ -64,7 +64,7 @@ If no transaction is active and no asset class is named, resolve it once a trans
 
 ## Step 3: Visuals
 
-Deliver visuals opportunistically by default — text and markdown tables for simple answers, and a chart, heatmap, or interactive table when the data is clearly visualization-friendly (`knowledge/reference/visuals-playbook.md`). If the analyst says "turn visuals off", "no charts", or "always chart this", honor it for the rest of the session.
+Deliver visuals opportunistically by default — text and markdown tables for simple answers, and a chart, heatmap, or interactive table when the data is clearly visualization-friendly (`knowledge/reference/visuals-playbook.md`). If the analyst says "turn visuals off", "no charts", or "always chart this", honor it for the rest of the session. **A visual never drops the source link** — the `Source — [<name>](<url>)` citation is modality-independent and rides in the same message as any chart or artifact (see `knowledge/reference/visuals-playbook.md` step 4). Delivering a chart instead of text is the most common place the citation is lost; it is not an exception.
 
 ## Step 4: Follow chain references
 

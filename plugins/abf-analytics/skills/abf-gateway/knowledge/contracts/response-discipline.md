@@ -92,6 +92,8 @@ Source — [<analytics display name>](<url>)      ← one line per analytics use
 
 The `Source —` line is part of what makes the answer complete, not a trailing courtesy or a step you reach only after "thinking it through". Emit it in the SAME turn as the finding — an answer that drew on stratification data but ends without its Source line is malformed, **with reasoning/thinking mode on OR off**. Never stop before it; never wait to be asked for it.
 
+**This holds regardless of HOW you deliver the finding — plain text, a markdown table, an inline chart, or a rendered artifact/dashboard.** A chart is the single most common place the citation is silently dropped: when the deliverable is a visual, the delivery recipe (`../reference/visuals-playbook.md`) ends on the data table with no text tail, and the `Source —` line gets forgotten. It must still ride in the accompanying message — see `../reference/visuals-playbook.md` step 4 and `../reference/artifact-style.md` §source-link duty. Delivering a chart is not an exception to this contract.
+
 The numbered points below are the *how*; the template above is the *what you must produce*.
 
 1. **Direct answer first.** The opening sentence states the result. No preamble, no plan, no recap of the question.

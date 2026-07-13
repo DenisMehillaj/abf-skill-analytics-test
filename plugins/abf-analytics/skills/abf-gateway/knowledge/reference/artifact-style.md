@@ -1,6 +1,8 @@
 # Artifact Style Guide
 
-Default visual style for any rendered artifact this plugin produces - an inline HTML/React dashboard, an exported Word or PDF report, an Excel export, or a standalone chart image. Plain chat-markdown replies are out of scope here; those follow `../contracts/response-discipline.md` as they already do.
+Default visual style for any rendered artifact this plugin produces - an inline HTML/React dashboard, an exported Word or PDF report, an Excel export, or a standalone chart image. Plain chat-markdown replies are out of scope **for styling**; those follow `../contracts/response-discipline.md`.
+
+**The source-link duty is NOT carved out by modality.** Only *styling* is scoped to chat replies above — the citation requirement is universal. Every rendered artifact that presents `get_stratification_analytics_data` results still owes the `Source — [<name>](<url>)` link from `../contracts/response-discipline.md` §Analytical answer shape: place it in the chat message that accompanies the artifact, and — for a self-contained exported document — also as a source footnote on the chart/data page itself. A dashboard or chart is a delivery of analytics data; shipping it without its source link is the same defect as a text answer with no citation. See also `visuals-playbook.md` step 4.
 
 Chart type selection is owned by `visuals-playbook.md` in this same folder - use its per-analysis defaults. This guide governs only how a chosen chart, table, or page is rendered: colors, fonts, layout.
 
